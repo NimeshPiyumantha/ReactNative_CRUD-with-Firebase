@@ -46,6 +46,14 @@ const Form = () => {
       });
   };
 
+  const loadAllData = async () => {
+    getDoc(collection(db, "users")).then((docSnap) => {
+      let users = [];
+      users.push({ ...doc.data(), id: doc.id });
+    });
+    console.log("Document data: ", users);
+  };
+
   return (
     <View style={styles.container}>
       <Text>Users:</Text>

@@ -91,16 +91,7 @@ const Form = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Users:</Text>
-      {data.map((user) => (
-        <View key={user.id}>
-          <Text>Name: {user.name}</Text>
-          <Text>Email: {user.email}</Text>
-          <Button title="Delete" onPress={() => deleteData()} />
-        </View>
-      ))}
-
-      <Text>Add User:</Text>
+      <Text style={styles.text}>User</Text>
       <TextInput
         style={styles.input}
         placeholder="ID"
@@ -137,6 +128,15 @@ const Form = () => {
         style={styles.button}
         onPress={deleteData}
       />
+
+      <Text style={styles.text}>Users Data Load</Text>
+      {data.map((user) => (
+        <View key={user.id}>
+          <Text>Name: {user.name}</Text>
+          <Text>Email: {user.email}</Text>
+          <Button title="Delete" onPress={() => deleteData()} />
+        </View>
+      ))}
     </View>
   );
 };
@@ -157,7 +157,12 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 8,
     padding: 10,
-    marginTop: 10,
+    margin: 20,
+  },
+  text: {
+    fontSize: 20,
+    margin: 20,
+    textAlign: "center",
   },
 });
 

@@ -33,7 +33,7 @@ const Form = () => {
     loadAllData();
   };
 
-  const loadAllData = async () => {
+  const searchById = async () => {
     getDoc(doc(db, "users", "ZIOKy0kLoZBySfpKHrPj"))
       .then((docData) => {
         if (docData.exists()) {

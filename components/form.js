@@ -47,6 +47,19 @@ const Form = () => {
     loadAllData();
   };
 
+  const deleteData = async () => {
+    deleteDoc(doc(db, "users", id))
+      .then(() => {
+        console.log("Successfully Delete");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    clear();
+    loadAllData();
+  };
+
   const clear = async () => {
     setId("");
     setName("");
@@ -108,6 +121,7 @@ const Form = () => {
       />
       <Button title="Add" style={styles.button} onPress={addData} />
       <Button title="Update" style={styles.button} onPress={updateData} />
+      <Button title="Delete" style={styles.button} onPress={deleteData} />
     </View>
   );
 };

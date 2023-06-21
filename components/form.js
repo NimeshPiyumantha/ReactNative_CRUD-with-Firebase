@@ -119,9 +119,24 @@ const Form = () => {
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <Button title="Add" style={styles.button} onPress={addData} />
-      <Button title="Update" style={styles.button} onPress={updateData} />
-      <Button title="Delete" style={styles.button} onPress={deleteData} />
+      <Button
+        title="Add"
+        color="#2ed573"
+        style={styles.button}
+        onPress={addData}
+      />
+      <Button
+        title="Update"
+        color="#ffa502"
+        style={styles.button}
+        onPress={updateData}
+      />
+      <Button
+        title="Delete"
+        color="#ff4757"
+        style={styles.button}
+        onPress={deleteData}
+      />
     </View>
   );
 };
@@ -140,7 +155,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   button: {
-    marginTop: 12,
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 10,
   },
 });
 

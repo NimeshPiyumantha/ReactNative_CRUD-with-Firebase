@@ -24,7 +24,20 @@ const Form = () => {
   const addData = async () => {
     setDoc(doc(db, "users", id), { name: name, email: email })
       .then(() => {
-        console.log("Successfully");
+        console.log("Successfully Add");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    clear();
+    loadAllData();
+  };
+
+  const updateData = async () => {
+    updateDoc(doc(db, "users", id), { name: name, email: email })
+      .then(() => {
+        console.log("Successfully Update");
       })
       .catch((error) => {
         console.log(error);
@@ -93,7 +106,8 @@ const Form = () => {
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <Button title="Add" onPress={addData} />
+      <Button title="Add" style={styles.button} onPress={addData} />
+      <Button title="Update" style={styles.button} onPress={updateData} />
     </View>
   );
 };
@@ -110,6 +124,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
+  },
+  button: {
+    marginTop: 12,
   },
 });
 

@@ -13,6 +13,7 @@ import { db } from "./config";
 
 const Form = () => {
   const [data, setData] = useState([]);
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -21,7 +22,7 @@ const Form = () => {
   }, []);
 
   const addData = async () => {
-    setDoc(doc(db, "users", doc.id()), { name: name, email: email })
+    setDoc(doc(db, "users", id), { name: name, email: email })
       .then(() => {
         console.log("Successfully");
       })
@@ -29,13 +30,18 @@ const Form = () => {
         console.log(error);
       });
 
-    setName("");
-    setEmail("");
+    clear();
     loadAllData();
   };
 
+  const clear = async () => {
+    setId("");
+    setName("");
+    setEmail("");
+  };
+
   const searchById = async () => {
-    getDoc(doc(db, "users", "ZIOKy0kLoZBySfpKHrPj"))
+    getDoc(doc(db, "users", "C001"))
       .then((docData) => {
         if (docData.exists()) {
           console.log(docData.data());
@@ -69,6 +75,12 @@ const Form = () => {
       ))}
 
       <Text>Add User:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="ID"
+        value={id}
+        onChangeText={(text) => setId(text)}
+      />
       <TextInput
         style={styles.input}
         placeholder="Name"

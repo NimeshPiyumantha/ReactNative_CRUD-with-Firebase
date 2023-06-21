@@ -27,7 +27,7 @@ const Form = () => {
       .catch((error) => {
         console.log(error);
       });
-    // // Clear input fields and fetch updated data
+
     setName("");
     setEmail("");
     loadAllData();

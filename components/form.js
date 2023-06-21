@@ -16,7 +16,6 @@ const Form = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    // Fetch initial data from Firestore
     loadAllData();
   }, []);
 

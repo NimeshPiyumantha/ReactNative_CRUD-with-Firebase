@@ -17,32 +17,37 @@ const Form = () => {
 
   useEffect(() => {
     // Fetch initial data from Firestore
-    fetchFirestoreData();
+    loadAllData();
   }, []);
 
-  const addDataToFirestore = async () => {
-    // await firestore().collection("users").add({
-    //   name: name,
-    //   email: email,
-    // });
-    // console.log(name);
-    // console.log(email);
+  const addData = async () => {
+    setDoc(doc(db, "users", "kd"), { name: name, email: email })
+      .then(() => {
+        console.log("Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(name);
+    console.log(email);
     // // Clear input fields and fetch updated data
-    // setName("");
-    // setEmail("");
-    // fetchFirestoreData();
+    setName("");
+    setEmail("");
+    loadAllData();
   };
 
-  const fetchFirestoreData = async () => {
-  getDoc(doc(db,"users",'ZIOKy0kLoZBySfpKHrPj')).then(docData=>{
-    if(docData.exists()){
-      console.log(docData.data());
-    }else{}
-  }).catch((error)=>{
-    console.log(error);
-  })
-};
-
+  const loadAllData = async () => {
+    getDoc(doc(db, "users", "ZIOKy0kLoZBySfpKHrPj"))
+      .then((docData) => {
+        if (docData.exists()) {
+          console.log(docData.data());
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -51,7 +56,7 @@ const Form = () => {
         <View key={user.id}>
           <Text>Name: {user.name}</Text>
           <Text>Email: {user.email}</Text>
-          <Button title="Delete" onPress={() => deleteDataFromFirestore()} />
+          <Button title="Delete" onPress={() => deleteData()} />
         </View>
       ))}
 
@@ -68,7 +73,7 @@ const Form = () => {
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <Button title="Add" onPress={addDataToFirestore} />
+      <Button title="Add" onPress={addData} />
     </View>
   );
 };

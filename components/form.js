@@ -7,6 +7,7 @@ import {
   updateDoc,
   deleteDoc,
   getDoc,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "./config";
 
@@ -20,7 +21,7 @@ const Form = () => {
   }, []);
 
   const addData = async () => {
-    setDoc(doc(db, "users", "kd"), { name: name, email: email })
+    setDoc(doc(db, "users", doc.id()), { name: name, email: email })
       .then(() => {
         console.log("Successfully");
       })
@@ -47,11 +48,13 @@ const Form = () => {
   };
 
   const loadAllData = async () => {
-    getDoc(collection(db, "users")).then((docSnap) => {
+    getDocs(collection(db, "users")).then((docSnap) => {
       let users = [];
-      users.push({ ...doc.data(), id: doc.id });
+      docSnap.forEach((doc) => {
+        users.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("Document data: ", users);
     });
-    console.log("Document data: ", users);
   };
 
   return (

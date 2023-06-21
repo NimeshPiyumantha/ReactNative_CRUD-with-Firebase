@@ -1,43 +1,74 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import {
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+} from "firebase/firestore";
+import { db } from "./config";
 
 const Form = () => {
+  const [data, setData] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  // Add more state variables for other form fields if needed
 
-  const handleInputChange = (inputName, inputValue) => {
-    if (inputName === "name") {
-      setName(inputValue);
-    } else if (inputName === "email") {
-      setEmail(inputValue);
-    }
+  useEffect(() => {
+    // Fetch initial data from Firestore
+    fetchFirestoreData();
+  }, []);
+
+  const addDataToFirestore = async () => {
+    // await firestore().collection("users").add({
+    //   name: name,
+    //   email: email,
+    // });
+    // console.log(name);
+    // console.log(email);
+    // // Clear input fields and fetch updated data
+    // setName("");
+    // setEmail("");
+    // fetchFirestoreData();
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log("Name:", name);
-    console.log("Email:", email);
-    // Add code to send data to server or perform other operations
-  };
+  const fetchFirestoreData = async () => {
+  getDoc(doc(db,"users",'ZIOKy0kLoZBySfpKHrPj')).then(docData=>{
+    if(docData.exists()){
+      console.log(docData.data());
+    }else{}
+  }).catch((error)=>{
+    console.log(error);
+  })
+};
+
 
   return (
     <View style={styles.container}>
+      <Text>Users:</Text>
+      {data.map((user) => (
+        <View key={user.id}>
+          <Text>Name: {user.name}</Text>
+          <Text>Email: {user.email}</Text>
+          <Button title="Delete" onPress={() => deleteDataFromFirestore()} />
+        </View>
+      ))}
+
+      <Text>Add User:</Text>
       <TextInput
         style={styles.input}
         placeholder="Name"
         value={name}
-        onChangeText={(value) => handleInputChange("name", value)}
+        onChangeText={(text) => setName(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
         value={email}
-        onChangeText={(value) => handleInputChange("email", value)}
+        onChangeText={(text) => setEmail(text)}
       />
-
-      {/* Add more TextInput components for other form fields if needed */}
-      <Button title="Submit" onPress={handleSubmit} />
+      <Button title="Add" onPress={addDataToFirestore} />
     </View>
   );
 };

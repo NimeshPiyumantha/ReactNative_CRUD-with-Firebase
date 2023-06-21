@@ -28,8 +28,6 @@ const Form = () => {
       .catch((error) => {
         console.log(error);
       });
-    console.log(name);
-    console.log(email);
     // // Clear input fields and fetch updated data
     setName("");
     setEmail("");

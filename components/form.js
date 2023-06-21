@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import {
   collection,
   doc,
@@ -85,9 +92,18 @@ const Form = () => {
       docSnap.forEach((doc) => {
         users.push({ ...doc.data(), id: doc.id });
       });
+      setData(users);
       console.log("Document data: ", users);
     });
   };
+
+  const renderItem = ({ item }) => (
+    <View style={styles.row}>
+      <Text style={styles.cell}>{item.id}</Text>
+      <Text style={styles.cell}>{item.name}</Text>
+      <Text style={styles.cell}>{item.email}</Text>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -128,15 +144,19 @@ const Form = () => {
         style={styles.button}
         onPress={deleteData}
       />
-
       <Text style={styles.text}>Users Data Load</Text>
-      {data.map((user) => (
-        <View key={user.id}>
-          <Text>Name: {user.name}</Text>
-          <Text>Email: {user.email}</Text>
-          <Button title="Delete" onPress={() => deleteData()} />
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>ID</Text>
+          <Text style={styles.headerText}>Name</Text>
+          <Text style={styles.headerText}>Age</Text>
         </View>
-      ))}
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
     </View>
   );
 };
@@ -145,6 +165,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    margin: 15,
     justifyContent: "center",
   },
   input: {
@@ -162,6 +183,25 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     margin: 20,
+    textAlign: "center",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  headerText: {
+    fontWeight: "bold",
+    flex: 1,
+    textAlign: "center",
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  cell: {
+    flex: 1,
     textAlign: "center",
   },
 });

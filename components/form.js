@@ -41,6 +41,7 @@ const Form = () => {
     loadAllData();
   };
 
+  
   const updateData = async () => {
     updateDoc(doc(db, "users", id), { name: name, email: email })
       .then(() => {

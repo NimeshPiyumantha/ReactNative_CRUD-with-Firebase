@@ -107,45 +107,49 @@ const Form = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>User</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="ID"
-        value={id}
-        onChangeText={(text) => setId(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <Button
-        title="Add"
-        color="#2ed573"
-        style={styles.button}
-        onPress={addData}
-      />
-      <Button
-        title="Update"
-        color="#ffa502"
-        style={styles.button}
-        onPress={updateData}
-      />
-      <Button
-        title="Delete"
-        color="#ff4757"
-        style={styles.button}
-        onPress={deleteData}
-      />
-      <Text style={styles.text}>Users Data Load</Text>
-      <View style={styles.container}>
+      <View style={styles.viewManage}>
+        <TextInput
+          style={styles.input}
+          placeholder="ID"
+          value={id}
+          onChangeText={(text) => setId(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+      </View>
+
+      <View style={styles.fixToButton}>
+        <Button
+          title="Add"
+          color="#2ed573"
+          style={styles.button}
+          onPress={addData}
+        />
+        <Button
+          title="Update"
+          color="#ffa502"
+          style={styles.button}
+          onPress={updateData}
+        />
+        <Button
+          title="Delete"
+          color="#ff4757"
+          style={styles.button}
+          onPress={deleteData}
+        />
+      </View>
+
+      <View style={styles.container2}>
         <View style={styles.header}>
           <Text style={styles.headerText}>ID</Text>
           <Text style={styles.headerText}>Name</Text>
@@ -168,6 +172,9 @@ const styles = StyleSheet.create({
     margin: 15,
     justifyContent: "center",
   },
+  viewManage: {
+    margin: 20,
+  },
   input: {
     height: 40,
     borderColor: "gray",
@@ -175,10 +182,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingHorizontal: 8,
   },
-  button: {
-    borderRadius: 8,
-    padding: 10,
-    margin: 20,
+  fixToButton: {
+    flexDirection: "column",
+    gap: 10,
+    justifyContent: "space-around",
   },
   text: {
     fontSize: 20,
@@ -187,18 +194,20 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginBottom: 8,
   },
-  headerText: {
-    fontWeight: "bold",
+  container2: {
     flex: 1,
-    textAlign: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    margin: 12,
   },
   row: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginBottom: 8,
+    fontWeight: 700,
   },
   cell: {
     flex: 1,

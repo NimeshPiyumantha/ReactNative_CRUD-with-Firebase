@@ -184,16 +184,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
+    fontSize: 16,
+    borderRadius: 10,
   },
   fixToButton: {
     flexDirection: "row",
     gap: 10,
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    margin: 20,
-    textAlign: "center",
   },
   header: {
     flexDirection: "row",
@@ -208,12 +205,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    marginTop: 10,
+    marginTop: 15,
   },
   headerCell: {
     flex: 1,
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: 17,
   },
   row: {
     flexDirection: "row",
@@ -225,6 +223,7 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     textAlign: "center",
+    fontSize: 15,
   },
 });
 

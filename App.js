@@ -1,20 +1,6 @@
-// import React from "react";
-// import { View } from "react-native";
-// import Home from "./screens/Home";
-
-// const App = () => {
-//   return (
-//     <View style={{ flex: 1 }}>
-//       <Home />
-//     </View>
-//   );
-// };
-
-// export default App;
-
 import { StatusBar } from "expo-status-bar";
 import Home from "./screens/Home";
-import Form from "./components/form";
+import UserForm from "./components/UserForm";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -41,7 +27,7 @@ export default function App() {
           />
           <Stack.Screen
             name="UserForm"
-            component={Form}
+            component={UserForm}
             options={{ title: "User Screen" }}
           />
         </Stack.Navigator>

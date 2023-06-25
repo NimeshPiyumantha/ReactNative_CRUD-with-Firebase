@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import Home from "./screens/Home";
-import UserForm from "./components/UserForm";
+import UserForm from "./screens/UserForm";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

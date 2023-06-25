@@ -5,7 +5,7 @@ import {
   TextInput,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
+  Alert,
 } from "react-native";
 import {
   collection,
@@ -16,8 +16,8 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
-import { db } from "./config";
-import Button from "./Button";
+import { db } from "../components/config";
+import Button from "../components/Button";
 
 const Form = () => {
   const [data, setData] = useState([]);
@@ -33,10 +33,10 @@ const Form = () => {
   const addData = async () => {
     setDoc(doc(db, "users", id), { name: name, email: email })
       .then(() => {
-        console.log("Successfully Add");
+        Alert.alert("Successfully Add..!");
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error);
       });
 
     clear();
@@ -46,10 +46,10 @@ const Form = () => {
   const updateData = async () => {
     updateDoc(doc(db, "users", id), { name: name, email: email })
       .then(() => {
-        console.log("Successfully Update");
+        Alert.alert("Successfully Update..!");
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error);
       });
 
     clear();
@@ -59,10 +59,10 @@ const Form = () => {
   const deleteData = async () => {
     deleteDoc(doc(db, "users", id))
       .then(() => {
-        console.log("Successfully Delete");
+        Alert.alert("Successfully Delete..!");
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error);
       });
 
     clear();
@@ -84,10 +84,11 @@ const Form = () => {
           setName(docData.data().name);
           setEmail(docData.data().email);
         } else {
+          Alert.alert("Empty Data..!");
         }
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error);
       });
   };
 

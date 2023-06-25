@@ -3,9 +3,9 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import {
   collection,
@@ -17,9 +17,11 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "./config";
+import Button from "./Button";
 
 const Form = () => {
   const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,13 +73,16 @@ const Form = () => {
     setId("");
     setName("");
     setEmail("");
+    setSearchText("");
   };
 
   const searchById = async () => {
-    getDoc(doc(db, "users", "C001"))
+    getDoc(doc(db, "users", searchText))
       .then((docData) => {
         if (docData.exists()) {
-          console.log(docData.data());
+          setId(searchText);
+          setName(docData.data().name);
+          setEmail(docData.data().email);
         } else {
         }
       })
@@ -93,7 +98,6 @@ const Form = () => {
         users.push({ ...doc.data(), id: doc.id });
       });
       setData(users);
-      console.log("Document data: ", users);
     });
   };
 
@@ -107,6 +111,16 @@ const Form = () => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <TextInput
+          style={styles.input}
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+          placeholder="Search Id"
+          onSubmitEditing={searchById}
+          returnKeyType="search" // Set the return key to "Search"
+        />
+      </View>
       <View style={styles.viewManage}>
         <TextInput
           style={styles.input}
@@ -129,13 +143,14 @@ const Form = () => {
       </View>
 
       <View style={styles.fixToButton}>
-        <Button
+        {/* <Button
           title="Add"
           color="#2ed573"
           style={styles.button}
           onPress={addData}
-        />
-        <Button
+        /> */}
+        <Button onPress={addData} color="#ffa502" title="ADD" />
+        {/* <Button
           title="Update"
           color="#ffa502"
           style={styles.button}
@@ -146,14 +161,14 @@ const Form = () => {
           color="#ff4757"
           style={styles.button}
           onPress={deleteData}
-        />
+        /> */}
       </View>
 
       <View style={styles.container2}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>ID</Text>
-          <Text style={styles.headerText}>Name</Text>
-          <Text style={styles.headerText}>Age</Text>
+          <Text style={styles.headerCell}>ID</Text>
+          <Text style={styles.headerCell}>Name</Text>
+          <Text style={styles.headerCell}>Age</Text>
         </View>
         <FlatList
           data={data}
@@ -175,6 +190,10 @@ const styles = StyleSheet.create({
   viewManage: {
     margin: 20,
   },
+  viewManage2: {
+    justifyContent: "space-around",
+    flexDirection: "row",
+  },
   input: {
     height: 40,
     borderColor: "gray",
@@ -183,9 +202,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   fixToButton: {
-    flexDirection: "column",
+    flexDirection: "row",
     gap: 10,
-    justifyContent: "space-around",
+    justifyContent: "center",
+  },
+  button: {
+    backgroundColor: "#2196F3",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
   text: {
     fontSize: 20,
@@ -194,20 +225,30 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 8,
+    backgroundColor: "#e0e0e0",
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: "#bdbdbd",
   },
   container2: {
-    flex: 1,
     justifyContent: "center",
-    marginTop: 20,
-    margin: 12,
+    flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginTop: 10,
+  },
+  headerCell: {
+    flex: 1,
+    fontWeight: "bold",
+    textAlign: "center",
   },
   row: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 8,
-    fontWeight: 700,
+    borderBottomWidth: 1,
+    borderBottomColor: "#bdbdbd",
+    paddingVertical: 10,
+    paddingHorizontal: 5,
   },
   cell: {
     flex: 1,

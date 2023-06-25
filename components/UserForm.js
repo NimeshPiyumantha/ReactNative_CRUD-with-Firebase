@@ -143,25 +143,9 @@ const Form = () => {
       </View>
 
       <View style={styles.fixToButton}>
-        {/* <Button
-          title="Add"
-          color="#2ed573"
-          style={styles.button}
-          onPress={addData}
-        /> */}
-        <Button onPress={addData} color="#ffa502" title="ADD" />
-        {/* <Button
-          title="Update"
-          color="#ffa502"
-          style={styles.button}
-          onPress={updateData}
-        />
-        <Button
-          title="Delete"
-          color="#ff4757"
-          style={styles.button}
-          onPress={deleteData}
-        /> */}
+        <Button onPress={addData} color="#2ed573" title="Add" />
+        <Button onPress={updateData} color="#ffa502" title="Update" />
+        <Button onPress={deleteData} color="#ff4757" title="Delete" />
       </View>
 
       <View style={styles.container2}>
@@ -205,18 +189,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     justifyContent: "center",
-  },
-  button: {
-    backgroundColor: "#2196F3",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   text: {
     fontSize: 20,

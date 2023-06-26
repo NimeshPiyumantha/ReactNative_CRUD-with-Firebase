@@ -17,7 +17,7 @@ This is a learning React Native.(`Mobile Crud Application`)
 
 <div align="center">
 
-![alt text](<https://github.com/NimeshPiyumantha/Golden-Wings/blob/master/FrontEnd/src/assets/sr/ezgif.com-video-to-gif%20(1).gif>)
+![alt text](https://github.com/NimeshPiyumantha/ReactNative_CRUD-with-Firebase/blob/master/src/assets/gif/crud.gif)
 
 </div>
 

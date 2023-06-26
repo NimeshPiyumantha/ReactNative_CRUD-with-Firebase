@@ -32,6 +32,19 @@ const ItemForm = () => {
     loadAllData();
   }, []);
 
+  const addData = async () => {
+    setDoc(doc(db, "items", id), { name: name, qty: qty })
+      .then(() => {
+        Alert.alert("Successfully Add..!");
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+
+    clear();
+    loadAllData();
+  };
+
   const loadAllData = async () => {
     getDocs(collection(db, "items")).then((docSnap) => {
       let items = [];

@@ -28,6 +28,10 @@ const ItemForm = () => {
   const [name, setName] = useState("");
   const [qty, setQty] = useState("");
 
+  useEffect(() => {
+    loadAllData();
+  }, []);
+
   const renderItem = ({ item }) => (
     <View style={styles.row}>
       <Text style={styles.cell}>{item.id}</Text>

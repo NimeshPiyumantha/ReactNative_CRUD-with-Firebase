@@ -202,8 +202,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "#2c3e50",
+    borderWidth: 1.5,
     marginBottom: 12,
     paddingHorizontal: 8,
     fontSize: 16,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: "#bdbdbd",
+    borderBottomColor: "#2c3e50",
     paddingVertical: 10,
     paddingHorizontal: 5,
   },

@@ -1,17 +1,15 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Alert,
-  Image,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, Alert, Image } from "react-native";
 import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 
 const Home = ({ navigation }) => {
   const onPressUser = () => {
     navigation.navigate("UserForm");
+  };
+
+  const onPressItem = () => {
+    navigation.navigate("ItemForm");
   };
 
   return (
@@ -25,11 +23,7 @@ const Home = ({ navigation }) => {
       <SafeAreaView style={styles.container}>
         <View style={styles.fixToButton}>
           <Button onPress={onPressUser} color="#841584" title="User Manage" />
-          <Button
-            title="Item Manage"
-            color="#841524"
-            onPress={() => Alert.alert("Right button pressed")}
-          />
+          <Button title="Item Manage" color="#841524" onPress={onPressItem} />
         </View>
       </SafeAreaView>
     </View>

@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "../screens/Home";
 import UserForm from "../screens/UserForm";
+import ItemForm from "../screens/ItemForm";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LogBox } from "react-native";
@@ -32,6 +33,11 @@ export default function AppNavigation() {
           name="UserForm"
           component={UserForm}
           options={{ title: "User Screen" }}
+        />
+        <Stack.Screen
+          name="ItemForm"
+          component={ItemForm}
+          options={{ title: "Item Screen" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

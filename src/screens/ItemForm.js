@@ -22,6 +22,12 @@ import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 
 const ItemForm = () => {
+  const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [qty, setQty] = useState("");
+
   const renderItem = ({ item }) => (
     <View style={styles.row}>
       <Text style={styles.cell}>{item.id}</Text>
@@ -65,7 +71,7 @@ const ItemForm = () => {
             style={styles.input}
             placeholder="Qty"
             value={qty}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text) => setQty(text)}
           />
         </View>
 

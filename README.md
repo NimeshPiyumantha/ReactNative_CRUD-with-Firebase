@@ -17,9 +17,7 @@ This is a learning React Native.(`Mobile Crud Application`)
 
 <div align="center">
 
-![alt text](<https://github.com/NimeshPiyumantha/ReactNative_CRUD-with-Firebase/blob/master/src/assets/gif/crud.gif>)
-
-<img src="https://github.com/NimeshPiyumantha/ReactNative_CRUD-with-Firebase/blob/master/src/assets/gif/crud.gif" alt="Alt Text" width="300" height="200">
+<img src="https://github.com/NimeshPiyumantha/ReactNative_CRUD-with-Firebase/blob/master/src/assets/gif/crud.gif" alt="Alt Text" width="500" height="900">
 
 </div>
 

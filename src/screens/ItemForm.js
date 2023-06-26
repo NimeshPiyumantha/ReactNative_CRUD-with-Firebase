@@ -45,6 +45,13 @@ const ItemForm = () => {
     loadAllData();
   };
 
+  const clear = async () => {
+    setId("");
+    setName("");
+    setQty("");
+    setSearchText("");
+  };
+
   const loadAllData = async () => {
     getDocs(collection(db, "items")).then((docSnap) => {
       let items = [];

@@ -62,6 +62,23 @@ const ItemForm = () => {
     });
   };
 
+  const searchById = async () => {
+    getDoc(doc(db, "items", searchText))
+      .then((docData) => {
+        if (docData.exists()) {
+          setId(searchText);
+          setName(docData.data().name);
+          setQty(docData.data().qty);
+        } else {
+          Alert.alert("Empty Data..!");
+        }
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+  };
+
+
   const renderItem = ({ item }) => (
     <View style={styles.row}>
       <Text style={styles.cell}>{item.id}</Text>

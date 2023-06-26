@@ -14,7 +14,7 @@ export default function App() {
         <StatusBar style="light"></StatusBar>
         <Image
           blurRadius={70}
-          source={require("./assets/bg.png")}
+          source={require("./src/assets/images/bg.png")}
           className="absolute w-full h-full"
         />
       </View>

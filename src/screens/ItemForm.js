@@ -27,13 +27,14 @@ const ItemForm = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [qty, setQty] = useState("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
     loadAllData();
   }, []);
 
   const addData = async () => {
-    setDoc(doc(db, "items", id), { name: name, qty: qty })
+    setDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
       .then(() => {
         Alert.alert("Successfully Add..!");
       })
@@ -49,6 +50,7 @@ const ItemForm = () => {
     setId("");
     setName("");
     setQty("");
+    setPrice("");
     setSearchText("");
   };
 
@@ -63,7 +65,7 @@ const ItemForm = () => {
   };
 
   const updateData = async () => {
-    updateDoc(doc(db, "items", id), { name: name, qty: qty })
+    updateDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
       .then(() => {
         Alert.alert("Successfully Update..!");
       })
@@ -95,6 +97,7 @@ const ItemForm = () => {
           setId(searchText);
           setName(docData.data().name);
           setQty(docData.data().qty);
+          setPrice(docData.data().price);
         } else {
           Alert.alert("Empty Data..!");
         }
@@ -109,6 +112,7 @@ const ItemForm = () => {
       <Text style={styles.cell}>{item.id}</Text>
       <Text style={styles.cell}>{item.name}</Text>
       <Text style={styles.cell}>{item.qty}</Text>
+      <Text style={styles.cell}>{item.price}</Text>
     </View>
   );
   return (
@@ -149,6 +153,12 @@ const ItemForm = () => {
             value={qty}
             onChangeText={(text) => setQty(text)}
           />
+          <TextInput
+            style={styles.input}
+            placeholder="Price"
+            value={price}
+            onChangeText={(text) => setPrice(text)}
+          />
         </View>
 
         <View style={styles.fixToButton}>
@@ -162,6 +172,7 @@ const ItemForm = () => {
             <Text style={styles.headerCell}>ID</Text>
             <Text style={styles.headerCell}>Name</Text>
             <Text style={styles.headerCell}>Qty</Text>
+            <Text style={styles.headerCell}>Price</Text>
           </View>
           <FlatList
             data={data}

@@ -75,6 +75,19 @@ const ItemForm = () => {
     loadAllData();
   };
 
+  const deleteData = async () => {
+    deleteDoc(doc(db, "items", id))
+      .then(() => {
+        Alert.alert("Successfully Delete..!");
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+
+    clear();
+    loadAllData();
+  };
+
   const searchById = async () => {
     getDoc(doc(db, "items", searchText))
       .then((docData) => {

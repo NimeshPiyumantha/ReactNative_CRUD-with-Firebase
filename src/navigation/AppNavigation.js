@@ -20,7 +20,7 @@ export default function AppNavigation() {
           headerStyle: { backgroundColor: "#351f44" },
           headerTintColor: "#fff",
           headerTitleStyle: { fontWeight: "bold" },
-          contentStyle: { backgroundColor: "rgba(255,255,255,0.2)" },
+          contentStyle: { backgroundColor: "#f1f2f6" },
         }}
       >
         <Stack.Screen

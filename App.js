@@ -6,7 +6,6 @@ import { View, Image } from "react-native";
 
 export default function App() {
   return (
-    
       <View className="flex-1 relative">
         <StatusBar style="light"></StatusBar>
         <Image

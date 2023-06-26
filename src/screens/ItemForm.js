@@ -62,6 +62,19 @@ const ItemForm = () => {
     });
   };
 
+  const updateData = async () => {
+    updateDoc(doc(db, "items", id), { name: name, qty: qty })
+      .then(() => {
+        Alert.alert("Successfully Update..!");
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
+
+    clear();
+    loadAllData();
+  };
+
   const searchById = async () => {
     getDoc(doc(db, "items", searchText))
       .then((docData) => {
@@ -77,7 +90,6 @@ const ItemForm = () => {
         Alert.alert(error);
       });
   };
-
 
   const renderItem = ({ item }) => (
     <View style={styles.row}>

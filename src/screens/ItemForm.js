@@ -72,7 +72,7 @@ const ItemForm = () => {
           <View style={styles.header}>
             <Text style={styles.headerCell}>ID</Text>
             <Text style={styles.headerCell}>Name</Text>
-            <Text style={styles.headerCell}>Age</Text>
+            <Text style={styles.headerCell}>Qty</Text>
           </View>
           <FlatList
             data={data}

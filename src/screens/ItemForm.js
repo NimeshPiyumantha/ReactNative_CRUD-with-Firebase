@@ -32,6 +32,16 @@ const ItemForm = () => {
     loadAllData();
   }, []);
 
+  const loadAllData = async () => {
+    getDocs(collection(db, "users")).then((docSnap) => {
+      let users = [];
+      docSnap.forEach((doc) => {
+        users.push({ ...doc.data(), id: doc.id });
+      });
+      setData(users);
+    });
+  };
+
   const renderItem = ({ item }) => (
     <View style={styles.row}>
       <Text style={styles.cell}>{item.id}</Text>

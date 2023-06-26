@@ -22,6 +22,14 @@ import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 
 const ItemForm = () => {
+
+    const renderItem = ({ item }) => (
+        <View style={styles.row}>
+          <Text style={styles.cell}>{item.id}</Text>
+          <Text style={styles.cell}>{item.name}</Text>
+          <Text style={styles.cell}>{item.email}</Text>
+        </View>
+      ); 
   return (
     <View style={styles.container1}>
       <StatusBar style="light" />

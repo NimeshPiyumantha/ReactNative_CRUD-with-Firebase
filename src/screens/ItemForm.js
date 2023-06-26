@@ -33,12 +33,12 @@ const ItemForm = () => {
   }, []);
 
   const loadAllData = async () => {
-    getDocs(collection(db, "users")).then((docSnap) => {
-      let users = [];
+    getDocs(collection(db, "items")).then((docSnap) => {
+      let items = [];
       docSnap.forEach((doc) => {
-        users.push({ ...doc.data(), id: doc.id });
+        items.push({ ...doc.data(), id: doc.id });
       });
-      setData(users);
+      setData(items);
     });
   };
 

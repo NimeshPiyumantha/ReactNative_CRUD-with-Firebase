@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  Button,
-  View,
-  SafeAreaView,
-  Text,
-  Alert,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, Text, Alert } from "react-native";
+import Button from "../components/Button";
 
 const Home = ({ navigation }) => {
   const onPressUser = () => {
@@ -16,13 +10,10 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.fixToButton}>
-        <Button
-          title="User Manage"
-          onPress={onPressUser}
-          color="#841584"
-        />
+        <Button onPress={onPressUser} color="#841584" title="User Manage" />
         <Button
           title="Item Manage"
+          color="#841524"
           onPress={() => Alert.alert("Right button pressed")}
         />
       </View>

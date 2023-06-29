@@ -1,21 +1,21 @@
 import { RequestHandler, Request, Response } from "express";
 import mongoose, { ClientSession } from "mongoose";
-import { User } from "../models/User";
+import { Item } from "../models/Item";
 
-export default class UserController {
-  addNewUser: RequestHandler = async (
+export default class ItemController {
+  addNewItem: RequestHandler = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
     let session: ClientSession | null = null;
 
     try {
-      const user = new User(req.body);
+      const item = new Item(req.body);
       // save role details
-      let newUser = await user.save();
+      let newItem = await item.save();
       return res
         .status(200)
-        .json({ message: "New User created.", responseData: newUser });
+        .json({ message: "New Item created.", responseData: newItem });
     } catch (error: unknown) {
       if (session != null) {
       }
@@ -28,18 +28,18 @@ export default class UserController {
     }
   };
 
-  updateUser: RequestHandler = async (
+  updateItem: RequestHandler = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
     try {
       const { id } = req.params;
-      let updatedUser = await User.findByIdAndUpdate(id, req.body, {
+      let updatedItem = await Item.findByIdAndUpdate(id, req.body, {
         new: true,
       });
       return res
         .status(200)
-        .json({ message: "User updated.", responseData: updatedUser });
+        .json({ message: "Item updated.", responseData: updatedItem });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });
@@ -49,21 +49,21 @@ export default class UserController {
     }
   };
 
-  deleteUser: RequestHandler = async (
+  deleteItem: RequestHandler = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
     try {
       const { id } = req.params;
-      let deletedUser = await User.findByIdAndDelete(id);
+      let deletedItem = await Item.findByIdAndDelete(id);
 
-      if (!deletedUser) {
-        throw new Error("Failed to delete User.");
+      if (!deletedItem) {
+        throw new Error("Failed to delete Item.");
       }
 
       return res
         .status(200)
-        .json({ message: "User deleted.", responseData: deletedUser });
+        .json({ message: "Item deleted.", responseData: deletedItem });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });
@@ -73,13 +73,13 @@ export default class UserController {
     }
   };
 
-  retrieveAllUser: RequestHandler = async (
+  retrieveAllItem: RequestHandler = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
     try {
-      const users = await User.find();
-      return res.status(200).json({ responseData: users });
+      const items = await Item.find();
+      return res.status(200).json({ responseData: items });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });
@@ -89,16 +89,16 @@ export default class UserController {
     }
   };
 
-  searchUserId: RequestHandler = async (
+  searchItemId: RequestHandler = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
     try {
       const { id } = req.params;
-      const users = await User.find({
-        $or: [{ id: id }, { name: id }, { email: id }],
+      const items = await Item.find({
+        $or: [{ id: id }, { name: id }, { qty: id }, { price: id }],
       });
-      return res.status(200).json({ responseData: users });
+      return res.status(200).json({ responseData: items });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });
@@ -114,8 +114,8 @@ export default class UserController {
   ): Promise<Response> => {
     try {
       const { id } = req.params;
-      const users = await User.findById(id);
-      return res.status(200).json({ responseData: users });
+      const items = await Item.findById(id);
+      return res.status(200).json({ responseData: items });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });

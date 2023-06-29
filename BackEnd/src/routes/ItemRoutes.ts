@@ -1,9 +1,9 @@
 import express, { Router } from "express";
-import UserController from "../controllers/UserController";
+import ItemController from "../controllers/ItemController";
 
-export default class UserRoutes {
+export default class ItemRoutes {
   private router: Router = express.Router();
-  private routerController: UserController = new UserController();
+  private routerController: ItemController = new ItemController();
 
   constructor() {
     this.configRoutes();
@@ -11,22 +11,22 @@ export default class UserRoutes {
 
   private configRoutes = (): void => {
     // POST /api/v1/user
-    this.router.post("/", this.routerController.addNewUser);
+    this.router.post("/", this.routerController.addNewItem);
 
     // GET /api/v1/user
-    this.router.get("/", this.routerController.retrieveAllUser);
+    this.router.get("/", this.routerController.addNewItem);
 
     // PUT /api/v1/user/:id
-    this.router.put("/:id", this.routerController.updateUser);
+    this.router.put("/:id", this.routerController.updateItem);
 
     // DELETE /api/v1/user/:id
-    this.router.delete("/:id", this.routerController.deleteUser);
+    this.router.delete("/:id", this.routerController.deleteItem);
 
     // GET /api/v1/user/serch/:id
     this.router.get("/:id", this.routerController.searchById);
 
     // GET /api/v1/user/search/:id
-    this.router.get("/search/:id", this.routerController.searchUserId);
+    this.router.get("/search/:id", this.routerController.searchItemId);
   };
 
   public getRouter = (): Router => {

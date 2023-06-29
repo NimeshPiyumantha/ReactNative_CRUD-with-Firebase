@@ -1,6 +1,6 @@
 import { RequestHandler, Request, Response } from "express";
 import mongoose, { ClientSession } from "mongoose";
-import { User } from "../modules/User";
+import { User } from "../models/User";
 
 export default class UserController {
   addNewUser: RequestHandler = async (

@@ -4,11 +4,23 @@
   "description": "Mobile BackEnd Learn",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && nodemon dist/app.js"
   },
+  "keywords": [],
   "author": "Nimma",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "@types/cors": "^2.8.13",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.22.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.13",
+    "nodemon": "^2.0.22"
   }
 }

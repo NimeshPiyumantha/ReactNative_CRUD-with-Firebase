@@ -3,8 +3,8 @@ import { Schema, model } from "mongoose";
 export interface IItem extends Document {
   id: string;
   name: string;
-  qty: number;
-  price:number
+  qty: string;
+  price: string;
 }
 
 const ItemSchema = new Schema(
@@ -18,11 +18,11 @@ const ItemSchema = new Schema(
       required: true,
     },
     qty: {
-      type: Number,
+      type: String,
       required: true,
     },
     price: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

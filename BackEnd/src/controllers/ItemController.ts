@@ -78,8 +78,8 @@ export default class ItemController {
     res: Response
   ): Promise<Response> => {
     try {
-      const items = await Item.find();
-      return res.status(200).json({ responseData: items });
+      const item = await Item.find();
+      return res.status(200).json({ responseData: item });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });
@@ -95,10 +95,10 @@ export default class ItemController {
   ): Promise<Response> => {
     try {
       const { id } = req.params;
-      const items = await Item.find({
+      const item = await Item.find({
         $or: [{ id: id }, { name: id }, { qty: id }, { price: id }],
       });
-      return res.status(200).json({ responseData: items });
+      return res.status(200).json({ responseData: item });
     } catch (error: unknown) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message });

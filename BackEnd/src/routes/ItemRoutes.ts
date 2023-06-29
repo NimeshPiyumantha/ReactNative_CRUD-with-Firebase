@@ -10,22 +10,22 @@ export default class ItemRoutes {
   }
 
   private configRoutes = (): void => {
-    // POST /api/v1/user
+    // POST /api/v1/item
     this.router.post("/", this.routerController.addNewItem);
 
-    // GET /api/v1/user
-    this.router.get("/", this.routerController.addNewItem);
+    // GET /api/v1/item
+    this.router.get("/", this.routerController.retrieveAllItem);
 
-    // PUT /api/v1/user/:id
+    // PUT /api/v1/item/:id
     this.router.put("/:id", this.routerController.updateItem);
 
-    // DELETE /api/v1/user/:id
+    // DELETE /api/v1/item/:id
     this.router.delete("/:id", this.routerController.deleteItem);
 
-    // GET /api/v1/user/serch/:id
+    // GET /api/v1/item/serch/:id
     this.router.get("/:id", this.routerController.searchById);
 
-    // GET /api/v1/user/search/:id
+    // GET /api/v1/item/search/:id
     this.router.get("/search/:id", this.routerController.searchItemId);
   };
 

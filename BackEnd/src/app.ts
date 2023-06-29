@@ -4,12 +4,16 @@ config();
 
 import express, { Request, Response } from "express";
 import db from "mongoose";
-import routes from "./routes";
 import { json, urlencoded } from "body-parser";
 import cors from "cors";
+import routes from "./routes";
 
 // Create the express app
 const app = express();
+
+//bodyParser json object size change
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.json({ limit: "10mb" }));
 
 // allow CORS
 // app.use(cors());

@@ -96,7 +96,7 @@ export default class UserController {
     try {
       const { id } = req.params;
       const users = await User.find({
-        $or: [{ fristName: id }, { lastName: id }, { address: id }],
+        $or: [{ id: id }],
       });
       return res.status(200).json({ responseData: users });
     } catch (error: unknown) {

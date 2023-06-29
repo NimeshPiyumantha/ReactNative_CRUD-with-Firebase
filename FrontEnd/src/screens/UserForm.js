@@ -8,16 +8,7 @@ import {
   Alert,
   Image,
 } from "react-native";
-import {
-  collection,
-  doc,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  getDoc,
-  getDocs,
-} from "firebase/firestore";
-import { db } from "../components/config";
+import api from "../../axios";
 import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 
@@ -33,12 +24,19 @@ const Form = () => {
   }, []);
 
   const addData = async () => {
-    setDoc(doc(db, "users", id), { name: name, email: email })
-      .then(() => {
-        Alert.alert("Successfully Add..!");
+    let newUser = { id: id, name: name, email: email };
+
+    api
+      .post("user", newUser)
+      .then((res) => {
+        console.log(res);
+        user.push(res.data.responseData);
+        setData(user);
+        alert("Register Successfully");
       })
       .catch((error) => {
-        Alert.alert(error);
+        console.log(error);
+        alert(error);
       });
 
     clear();
@@ -46,25 +44,31 @@ const Form = () => {
   };
 
   const updateData = async () => {
-    updateDoc(doc(db, "users", id), { name: name, email: email })
-      .then(() => {
-        Alert.alert("Successfully Update..!");
+    let updateUser = { id: id, name: name, email: email };
+
+    api
+      .put(`user/${id}`, updateUser)
+      .then((res) => {
+        console.log(res);
+        setData(post);
+        alert("Update Successfully");
       })
       .catch((error) => {
-        Alert.alert(error);
+        console.log(error);
       });
-
     clear();
     loadAllData();
   };
 
   const deleteData = async () => {
-    deleteDoc(doc(db, "users", id))
-      .then(() => {
-        Alert.alert("Successfully Delete..!");
+    api
+      .delete(`user/${id}`)
+      .then((res) => {
+        alert("Successfully Delete..!");
       })
       .catch((error) => {
-        Alert.alert(error);
+        console.log(error);
+        alert(error);
       });
 
     clear();
@@ -79,29 +83,25 @@ const Form = () => {
   };
 
   const searchById = async () => {
-    getDoc(doc(db, "users", searchText))
-      .then((docData) => {
-        if (docData.exists()) {
-          setId(searchText);
-          setName(docData.data().name);
-          setEmail(docData.data().email);
-        } else {
-          Alert.alert("Empty Data..!");
-        }
+    api
+      .get(`user/search/${searchText}`)
+      .then((res) => {
+        setData(res.data.responseData);
       })
       .catch((error) => {
-        Alert.alert(error);
+        console.log(error);
       });
   };
 
   const loadAllData = async () => {
-    getDocs(collection(db, "users")).then((docSnap) => {
-      let users = [];
-      docSnap.forEach((doc) => {
-        users.push({ ...doc.data(), id: doc.id });
+    api
+      .get("user")
+      .then((res) => {
+        setData(res.data.responseData);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      setData(users);
-    });
   };
 
   const renderItem = ({ item }) => (

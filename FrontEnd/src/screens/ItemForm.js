@@ -8,16 +8,6 @@ import {
   Alert,
   Image,
 } from "react-native";
-import {
-  collection,
-  doc,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  getDoc,
-  getDocs,
-} from "firebase/firestore";
-import { db } from "../components/config";
 import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 
@@ -30,20 +20,20 @@ const ItemForm = () => {
   const [price, setPrice] = useState("");
 
   useEffect(() => {
-    loadAllData();
+    // loadAllData();
   }, []);
 
   const addData = async () => {
-    setDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
-      .then(() => {
-        Alert.alert("Successfully Add..!");
-      })
-      .catch((error) => {
-        Alert.alert(error);
-      });
+    // setDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
+    //   .then(() => {
+    //     Alert.alert("Successfully Add..!");
+    //   })
+    //   .catch((error) => {
+    //     Alert.alert(error);
+    //   });
 
     clear();
-    loadAllData();
+    // loadAllData();
   };
 
   const clear = async () => {
@@ -55,56 +45,56 @@ const ItemForm = () => {
   };
 
   const loadAllData = async () => {
-    getDocs(collection(db, "items")).then((docSnap) => {
-      let items = [];
-      docSnap.forEach((doc) => {
-        items.push({ ...doc.data(), id: doc.id });
-      });
-      setData(items);
-    });
+    // getDocs(collection(db, "items")).then((docSnap) => {
+    //   let items = [];
+    //   docSnap.forEach((doc) => {
+    //     items.push({ ...doc.data(), id: doc.id });
+    //   });
+    //   setData(items);
+    // });
   };
 
   const updateData = async () => {
-    updateDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
-      .then(() => {
-        Alert.alert("Successfully Update..!");
-      })
-      .catch((error) => {
-        Alert.alert(error);
-      });
+    // updateDoc(doc(db, "items", id), { name: name, qty: qty, price: price })
+    //   .then(() => {
+    //     Alert.alert("Successfully Update..!");
+    //   })
+    //   .catch((error) => {
+    //     Alert.alert(error);
+    //   });
 
     clear();
-    loadAllData();
+    // loadAllData();
   };
 
   const deleteData = async () => {
-    deleteDoc(doc(db, "items", id))
-      .then(() => {
-        Alert.alert("Successfully Delete..!");
-      })
-      .catch((error) => {
-        Alert.alert(error);
-      });
+    // deleteDoc(doc(db, "items", id))
+    //   .then(() => {
+    //     Alert.alert("Successfully Delete..!");
+    //   })
+    //   .catch((error) => {
+    //     Alert.alert(error);
+    //   });
 
     clear();
-    loadAllData();
+    // loadAllData();
   };
 
   const searchById = async () => {
-    getDoc(doc(db, "items", searchText))
-      .then((docData) => {
-        if (docData.exists()) {
-          setId(searchText);
-          setName(docData.data().name);
-          setQty(docData.data().qty);
-          setPrice(docData.data().price);
-        } else {
-          Alert.alert("Empty Data..!");
-        }
-      })
-      .catch((error) => {
-        Alert.alert(error);
-      });
+    // getDoc(doc(db, "items", searchText))
+    //   .then((docData) => {
+    //     if (docData.exists()) {
+    //       setId(searchText);
+    //       setName(docData.data().name);
+    //       setQty(docData.data().qty);
+    //       setPrice(docData.data().price);
+    //     } else {
+    //       Alert.alert("Empty Data..!");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     Alert.alert(error);
+    //   });
   };
 
   const renderItem = ({ item }) => (
